@@ -45,7 +45,7 @@ class StreamListener(tweepy.StreamListener):
 
     def on_error(self, status_code):
         if status_code == 420 or status_code == 429:
-            return False
+            return True
 
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
