@@ -45,6 +45,7 @@ class StreamListener(tweepy.StreamListener):
 
     def on_error(self, status_code):
         if status_code == 420 or status_code == 429:
+            print("You've reached the limits")
             return True
 
 stream_listener = StreamListener(api)
