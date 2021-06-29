@@ -7,7 +7,6 @@ from tweepy.streaming import StreamListener
 from tweepy import API
 from tweepy import Cursor
 from os import environ
-import keys
 
 ###********** Authentication Keys **********
 CONSUMER_KEY = environ['CONSUMER_KEY']
