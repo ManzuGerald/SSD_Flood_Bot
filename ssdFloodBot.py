@@ -57,14 +57,12 @@ class StreamListener(tweepy.StreamListener):
     #status code 420 prevents our code from reaching Twitter vv limits and warnings.....
     def on_error(self, status_code):
         if status_code == 420:
-            print("Error on_data %s" % str(e))
             print("Error from limits")
             return True
         if status_code == 429:
-            print("Error on_data %s" % str(e))
             print("LIMIT EXCEEDED")
             return True
-            
+
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
 ssd_list = ["@ssdFloodBot","flooding south sudan","south sudan flooding", "south sudan floods", "floods south sudan", "floods in south sudan","south sudan in floods", "flooding in south sudan", "flooding bor", "south sudan flooding", "bor flooding", "flooding akobo", "AKOBO FLOODING"]
