@@ -23,7 +23,7 @@ class StreamListener(tweepy.StreamListener):
         self.api = api
         self.me = api.me()
     def on_status(self, status):
-        
+
         if not status.retweeted:
             try:
                 status.retweet()
@@ -50,7 +50,7 @@ ssd_list = ["@ssdFloodBot",
 "south sudan floods", "floods south sudan",
 "floods in south sudan","south sudan in floods", "flooding in south sudan",
 "south sudan flooding",
-"flooding bor", "bor flooding"
+"flooding bor", "bor flooding",
 "flooding akobo", "AKOBO FLOODING"]
 
 stream.filter(track= ssd_list)
