@@ -23,17 +23,7 @@ class StreamListener(tweepy.StreamListener):
         self.api = api
         self.me = api.me()
     def on_status(self, status):
-        if status.in_reply_to_status_id is not None or \
-            status.user.id == self.me.id:
-            # This tweet is a reply or I'm its author so, ignore it
-            return
-        if not status.favorited:
-            # Mark it as Liked, since we have not done it yet
-            try:
-                status.favorite()
-            except Exception as e:
-                print("Error on_data %s" % str(e))
-                return True
+        
         if not status.retweeted:
             try:
                 status.retweet()
@@ -43,10 +33,15 @@ class StreamListener(tweepy.StreamListener):
         print(status.text)
         #print(dir(status))
 
-    def on_error(self, status_code):
-        if status_code == 420 or status_code == 429:
-            print("You've reached the limits")
-            return True
+        def on_error(self, status_code):
+            if status_code == 420:
+                print("Error on_data %s" % str(e))
+                print("Error from limits")
+                return True
+            if status_code == 429:
+                print("Error on_data %s" % str(e))
+                print("LIMIT EXCEEDED")
+                return True
 
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
