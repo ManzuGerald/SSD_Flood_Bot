@@ -28,7 +28,7 @@ class StreamListener(tweepy.StreamListener):
             try:
                 status.retweet()
             except:
-                print("Error on_data %s" % str(e))
+                print("Retweet Error")
                 return True
         print(status.text)
         #print(dir(status))
