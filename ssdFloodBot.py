@@ -16,14 +16,18 @@ ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY,ACCESS_SECRET)
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+#wait_on_rate_limit monitors and lets the API wait when we hit some limits.
 
 class StreamListener(tweepy.StreamListener):
     def __init__(self, api):
         self.api = api
         self.me = api.me()
     def on_status(self, status):
-
+        #Ignores the tweet so long as I am the Author, or it's a reply to a tweet
+        if status.in_reply_to_status_id is not None or \
+            status.user.id == self.me.id:
+            return
         if not status.retweeted:
             try:
                 status.retweet()
