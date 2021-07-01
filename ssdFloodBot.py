@@ -65,6 +65,6 @@ class StreamListener(tweepy.StreamListener):
 
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
-ssd_list = ["flooding south sudan","south sudan flooding", "south sudan floods", "floods south sudan", "floods in south sudan","south sudan in floods", "flooding in south sudan", "flooding bor", "south sudan flooding", "@ssdFloodBot"]
+ssd_list = ["flooding south sudan", "south sudan floods", "south sudan in floods", "flooding bor", "flooding Akobo", "flooding malakal", "flooding nasir", "@ssdFloodBot"]
 
 stream.filter(track= ssd_list)
