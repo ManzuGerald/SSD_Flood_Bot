@@ -59,9 +59,6 @@ class StreamListener(tweepy.StreamListener):
         if status_code == 420:
             print("Error from limits")
             return True
-        if status_code == 429:
-            print("LIMIT EXCEEDED")
-            return True
 
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
