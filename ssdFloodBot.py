@@ -57,8 +57,10 @@ class StreamListener(tweepy.StreamListener):
     #status code 420 prevents our code from reaching Twitter vv limits and warnings.....
     def on_error(self, status_code):
         if status_code == 420:
-            print("Error from limits")
-            return True
+            try:
+                print("Error from limits")
+            except tweepy.error.TweepError as e:
+                raise e
 
 stream_listener = StreamListener(api)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
